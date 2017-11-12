@@ -1,0 +1,140 @@
+﻿.user-data  {
+    height: 352px;
+}
+
+.avatar {
+    height: 256px;
+    width: 256px;
+    position: relative;
+    float: left;
+}
+
+.login, a.setting, #email {
+    margin-left: 20px;
+}
+
+.login {
+    float: left;
+    position: relative;
+    font-size: 24px;
+}
+
+a.setting {
+    width: 32px;
+    height: 32px;
+    float: left;
+    position: relative;
+   
+}
+
+#medal {
+    width: 128px;
+    height: 128px;
+    float: right;
+}
+
+.medal {
+    float: right;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.creatives {
+    height: auto;
+}
+
+.creative {
+    height: 215px;
+    width: 320px;
+    margin-left: 20px;
+    float: left;
+    position: relative;
+}
+
+.date {
+    font-size: 15px;
+}
+
+#creatives-header {
+    width: 100%;
+    height: 33.6px;
+    margin-bottom: 25px;
+}
+
+.sort {
+    float: right;
+}
+
+#add {
+    width: 32px;
+    height: 32px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.ng-modal-overlay {
+    position:absolute;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    opacity: 0.8;
+}
+.ng-modal-dialog {
+    z-index:10000;
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    background-color: #fff;
+    box-shadow: 4px 4px 80px #000;
+    border-radius: 6px;
+}
+.ng-modal-dialog-content {
+    
+}
+
+#add-dialog {
+    width: 32px;
+    height: 32px;
+    float: left;    
+    cursor: pointer;
+}
+
+.form-module{
+    margin-top: 13px;
+}
+
+#file {
+    display:none;
+}
+
+.file__drop {
+    display: block;
+    width: 256px;
+    height: 256px;
+    line-height: 256px;
+}
+.button-create-position{
+    margin-bottom:15px;
+    width:50%;
+}
+
+.label-position-in-modal-dialog{
+    margin-top: 7px;
+    padding-right: -15px;
+    max-width: 60px;
+}
+.position-tags-in-UserPage{
+    margin-top: 10px;
+}
+.margin-top-in-buttons{
+    margin-top:3px;
+    float:left;
+}

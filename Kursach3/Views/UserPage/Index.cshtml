@@ -1,0 +1,283 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/UserPage.Day.css" rel="stylesheet" />
+<div>
+    
+    <div class="user-data jumbotron" ng-controller="userDataController">
+        <input type="hidden" id="you" value="@ViewBag.UserId" />
+        <div class="avatar">
+            <img src="{{user.AvatarUrl}}" class="file__drop img-rounded" data-image data-image-uploader />
+        </div>
+        <div>
+            <div>
+                <div class="login">{{user.Login}}</div>
+                <a ng-show="user.Id == authorizedId" class="setting" href="/Manage/Index/"></a>
+            </div>
+            <div id="medal">           
+                <img class="medal" src="~/Content/Images/gold-medal.png" ng-show="user.CountCreatives > 5" />
+                <img class="medal" src="~/Content/Images/silver-medal.png" ng-show="user.CountCreatives > 2" />
+            </div>
+        </div>
+        <br />
+        <br />
+        <a id="email" href="mailto:{{user.Email}}">{{user.Email}}</a>
+    </div>
+
+    <div class="creatives">
+
+        <div id="creatives-header">
+            <div id="add-dialog" ng-controller="addController">
+                <input type="hidden" id="you" value="@ViewBag.UserId" />
+                <img id="add" ng-show="addShow" ng-click="toggleModal()" src="~/Content/Images/Day/add.png" />
+
+
+                <modal-dialog show='modalShown' width='80%' height='90%' >
+     
+                    
+                        <div class="thismargin max-height-modal">
+
+                            <div class="form-group row">
+
+                                <label for="example-text-input" class="col-xs-2 col-form-label label-position-in-modal-dialog">@Resources.Resource.Name:</label>
+
+                                <div class="col-xs-10">
+                                    <input class="form-control" type="text" placeholder=@Resources.Resource.CreativeName id="example-text-input" ng-model="creative.Name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="margininput">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+
+                                        <div class="form-group row" style="margin-bottom: 0">
+                                            <div class="col-md-10 col-sm-9 col-xs-8">
+                                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder=@Resources.Resource.ChapterName ng-model="ChapterView.Name">
+                                            </div>
+                                            <div class="margin-top-in-buttons">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    <img src="~/Content/Images/arrow-dark.png" />
+                                                </a>
+                                                <a href="#"><img src="~/Content/Images/add-dark.png" ng-click="addChapter()" style="margin-left:30px;" /></a>
+                                            </div>
+                                            </div>
+                                    </div>
+
+                      
+                                    <div class="text-center text-muted">@Model.Login</div>
+                                    <input id="stars" class="rating rating-loading" data-show="sm" data-show-clear="false"
+                                           data-display-only="@((!User.Identity.IsAuthenticated)).ToString().ToLower())"
+                                           data-show-caption="false" data-max="5" data-min="0" dta-step="1" value="@Model.AvgRating">
+
+
+
+
+                                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                        <div class="panel-body">
+                                            <div id="summernote"><p>@Resources.Resource.ChapterText</p></div>
+                                        </div>
+
+
+                                        <div class="width-of-tag-container">
+
+                                            <div class="row">
+                                                <div>
+                                                    <div class="card" ng-cloak>
+
+                                                        <div class="input-tags">
+                                                            <input class="form-control" data-tag-input="" data-ng-model="tagText" placeholder=@Resources.Resource.EnterATag data-new-tag="addTag()" data-remove-tag="removeTag()" type="text" />
+                                                            <div class="position-tags-in-UserPage">
+                                                                <div class="tag badge" data-ng-repeat="(id, tag) in tags">
+                                                                    {{ tag.Name }}</div>
+                                                                    <button class="tag-remove" data-ng-click="removeTag(id) ">&times;</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <br />
+
+
+                        @*<div data-ng-repeat="(Id, chapter) in chapters">
+                {{chapter.Name}}
+            </div>*@
+                        <br />
+                        <div class="col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+                            <button type="button" class="btn btn-default btn-lg col-md-5" ng-click="createCreative();hideModal()">@Resources.Resource.SaveCreative</button>
+                        </div>
+                               
+                </modal-dialog>
+            </div>
+           
+        </div>
+
+        <div ng-controller="userCreativesController">
+            <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="creative in creatives">
+                <div class="creative-in-UserPage well">
+                        <input type="hidden" class="creative-id" value="{{creative.Id}}" />
+                        <a ng-click="openCreative()" class="style-for-name">{{creative.Name}}</a>
+                        <hr />
+                        <div id="link-for-name" class="position-link">
+                        </div>
+                        <p class="date size-of-text">@Resources.Resource.Added: {{creative.CreateData}}</p>
+                        <p class="date">@Resources.Resource.LastRedact: {{creative.RedactData}}</p>
+                        <div class="rateYo">{{creative.Rank}}</div>
+                        <script>
+                            $(function () {
+                                $(".rateYo").rateYo({
+                                    rating: $('.rateYou').last().html(),
+                                    onSet: function (rating, rateYoInstance) {
+                                        jQuery.ajax({
+                                            type: "POST",
+                                            url: "/UserPage/ChangeRank/",
+                                            data: JSON.stringify({
+                                                rank: rating,
+                                                creativeId: $('.creative-id').last().val()
+                                            }),
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json"
+                                        });
+
+                                    }
+                                });
+                            });
+                        </script>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+        $(function () {
+
+            $("#rateYo").rateYo({
+                rating: 3.6
+            });
+
+        });
+</script>
+
+@section scripts {    
+    <script src="~/Scripts/creating-script.js"></script>
+    <script src="~/Scripts/summernote.js"></script>
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('#summernote').summernote();
+        });
+    </script>
+
+    <script>
+        $('body').on({ 'drop dragover dragenter': dropHandler }, '[data-image-uploader]');
+        $('body').on({ 'change': regularImageUpload }, '#file');
+
+        function regularImageUpload(e) {
+            var file = $(this)[0],
+                type = file.files[0].type.toLocaleLowerCase();
+
+            if (type.match(/jpg/) !== null ||
+               type.match(/jpeg/) !== null ||
+               type.match(/png/) !== null ||
+               type.match(/gif/) !== null) {
+
+                readUploadedImage(file.files[0]);
+            }
+        }
+
+        function dropHandler(e) {
+            e.preventDefault();
+
+            if (e.type === 'drop' && e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length) {
+
+                var files = e.originalEvent.dataTransfer.files,
+				    type = files[0].type.toLocaleLowerCase();
+
+                if (type.match(/jpg/) !== null ||
+				    type.match(/jpeg/) !== null ||
+				    type.match(/png/) !== null ||
+				    type.match(/gif/) !== null) {
+
+                    readUploadedImage(files[0]);
+
+                }
+
+            }
+
+            return false;
+        }
+
+        function readUploadedImage(img) {
+            var reader;
+
+            if (window.FileReader) {
+                reader = new FileReader();
+                reader.readAsDataURL(img);
+
+                reader.onload = function (file) {
+                    if (file.target && file.target.result) {
+                        imageLoader(file.target.result, displayImage);
+                    }
+
+                };
+
+                reader.onerror = function () {
+                    throw new Error('Something went wrong!');
+                };
+
+            } else {
+                throw new Error('FileReader not supported!');
+            }
+
+        }
+
+        function imageLoader(src, callback) {
+            var img;
+
+            img = new Image();
+
+            img.src = src;
+
+            jQuery.ajax({
+                type: "POST",
+                url: "/UserPage/ChangeAvatar/",
+                data: JSON.stringify({ src: src }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            });
+        
+            img.onload = function () {
+                imageResizer(img, callback);
+            }
+
+        }
+
+        function imageResizer(img, callback) {
+            var canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 200;
+            context = canvas.getContext('2d');
+            context.drawImage(img, 0, 0, 200, 200);
+
+            callback(canvas.toDataURL());
+
+        }
+
+        function displayImage(img) {
+            $('[data-image]').attr('src', img);
+        }
+    </script>
+}

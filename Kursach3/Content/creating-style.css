@@ -1,0 +1,43 @@
+﻿@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+
+
+.panel-heading .btn-clickable
+{
+display: inline-block;
+margin-top: -25px;
+font-size: 15px;
+margin-right: -10px;
+padding: 4px 10px;
+border-radius: 4px
+}
+ 
+ 
+.panel-heading span
+{
+margin-top: -23px;
+font-size: 15px;
+margin-right: -9px;
+}
+
+div.container div.row div.col-md-12 div.panel div.panel-heading h3.panel-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+.thismargin{
+    margin: 20px 20% 15px 5%;
+    
+}
+.margininput{
+    margin: 0px 5% 0px 5%;
+}
+.margintop{
+    margin-top: 4px;
+}
+.float-with-buttons-left{
+    float:left;
+}
+.float-with-buttons-right{
+    float: right;
+    margin-right: 50px;
+}
+

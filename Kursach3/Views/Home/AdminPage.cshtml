@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Kursach3.Models.ApplicationUser>
+
+<table class="table">
+    <tr>
+        <th>
+            @Resources.Resource.Login
+        </th>
+        <th>
+            @Resources.Resource.Email
+        </th>
+        <th>
+            @Resources.Resource.Ban
+        </th>
+        <th>@Resources.Resource.BanIt</th><th>@Resources.Resource.Remove</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ban)
+            </td>
+            <td>
+                <a href='@Url.Action("BanUser", "Home",  new { id = item.Id})'>
+                <img src='@Url.Content("~/Content/Images/ban.png")' />
+                    @*@Html.ActionLink(Resources.Resource.Ban, "BanUser", new { id = item.Id, @class = "actionLink" })*@
+                </a>
+              </td>
+            <td>
+                <a href="../../Home/DeleteUserById/?id=@item.Id"><img src="~/Content/Images/delete.png"></a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<style>
+    .actionLink {
+      background: url(../../Content/Images/ban.png) no-repeat top left;
+     display: block;
+     width: 150px;
+     height: 150px;
+     text-indent: -9999px; /* hides the link text */
+    }
+</style>

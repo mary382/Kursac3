@@ -1,0 +1,35 @@
+﻿@model Kursach3.Models.ExternalLoginConfirmationViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<h2>@Resources.Resource.Register.</h2>
+<h3>@Resources.Resource.AssociateYour @ViewBag.LoginProvider.</h3>
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4>@Resources.Resource.AssociationForm</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <p class="text-info">
+        @Resources.Resource.AssociationFormLongText1 <strong>@ViewBag.LoginProvider</strong>.
+        @Resources.Resource.AssociationFormLongText2.
+    </p>
+    <div class="form-group">
+        <span class="col-md-2 control-label">@Resources.Resource.Email</span>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+</div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value=@Resources.Resource.Register />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

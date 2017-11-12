@@ -1,0 +1,1 @@
+﻿let app = angular.module("createApp", ["ngRoute", "ngResource", "ui.router", 'ngSanitize']);

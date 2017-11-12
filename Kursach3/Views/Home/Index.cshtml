@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="vertical-indent">
+
+    <h1 class="style-of-text-h1">@Resources.Resource.Popular</h1>
+
+    <div ng-controller="popularCreativeController" class="popular">
+
+        <div ng-repeat="user in users" class="col-md-4 col-sm-6 col-xs-12">
+            <div class="well">
+                <a href="http://localhost:52038/Creative/CreativeReader/#{{user.Creatives[0].Id}}" class="style-for-name">{{user.Creatives[0].Name}}</a>
+                <hr />
+                <div id="link-for-name" class="position-link">
+                    <a href="http://localhost:52038/UserPage/Index/{{user.Id}}" class="date">{{user.Login}}</a>
+                </div>
+                <p class="date">@Resources.Resource.Added: {{user.Creatives[0].CreateData}}</p>
+                <div id="rateYo"></div>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <h1 class="style-of-text-h1">@Resources.Resource.NEW_</h1>
+
+    <div ng-controller="newCreativeController" class="new">
+
+        <div ng-repeat="user in users" class="col-md-4 col-sm-6 col-xs-12">
+            <div class="well">
+
+                <a href="http://localhost:52038/Creative/CreativeReader/#{{user.Creatives[0].Id}}" class="style-for-name">{{user.Creatives[0].Name}}</a>
+                    <hr />
+                    <div id="link-for-name" class="position-link">
+                        <a href="http://localhost:52038/UserPage/Index/{{user.Id}}" class="date">{{user.Login}}</a>
+                    </div>
+                    <p class="date">@Resources.Resource.Added: {{user.Creatives[0].CreateData}}</p>
+                    <div id="rateYo"></div>
+
+</div>
+    </div>
+
+    <div class="between-cloud-and-panel" ></div>
+        <div style="position:relative" ng-controller="tagsController">
+            <div id="div1">
+                <a href="#" ng-repeat="tag in tags">{{tag.Name}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/Tag-Cloud.js"></script>
+}

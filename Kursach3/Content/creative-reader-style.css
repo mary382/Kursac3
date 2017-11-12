@@ -1,0 +1,29 @@
+﻿.chapters-list, .full-creative {
+    float:right;
+    
+}
+.chapters-list{
+    position:fixed;
+    margin-right: 3%;
+}
+
+.main-div{
+    margin-top: 30px;
+}
+.style-for-h2{
+    margin-top: 0;
+    text-align:center;
+}
+.style-for-chapters-list{
+    margin-top:15px;
+}
+.redact-position{
+    margin-left: 20px;
+}
+.name-link-size{
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.margin-top-of-name-creative{
+    margin-top: -40px;
+}

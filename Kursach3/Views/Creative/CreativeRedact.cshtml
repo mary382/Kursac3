@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "CreativeRedact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div ng-controller="redactController">
+    <div class="main-div">
+        <div class="col-sm-3 col-md-3 col-xs-3 chapters-list">
+            <div class="list-group">
+                <a href="#" ng-repeat="chapter in creative.Chapters" class="list-group-item" ng-click="changeChapter(chapter)">{{chapter.Name}}</a>
+            </div>
+        </div>
+        <div class="col-sm-7 col-md-8 col-xs-8 full-creative jumbotron">
+            <form role="form">
+                <div class="form-group">
+                    <h2 class="style-for-h2">{{creative.Name}}</h2>
+                    <hr />
+                    <input type="text" ng-model="chapterSelect.Name" class="form-control" />
+                    <hr />
+                    
+                        <div id="summernote"></div>
+                    <div class="col-sm-offset-4 col-md-offset-5 col-xs-offset-4">
+                        <button type="submit" ng-click="saveChapter(chapterSelect.Id)" class="btn btn-default btn-lg">@Resources.Resource.Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/summernote.js"></script>
+    <script>
+            $(document).ready(function() {
+                $('.summernote').summernote();
+            });
+    </script>
+}

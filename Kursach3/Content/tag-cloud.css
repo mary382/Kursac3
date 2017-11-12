@@ -1,0 +1,29 @@
+﻿#div1 {
+    position:relative; 
+    width:400px;
+    height:400px; 
+    margin: 20px auto 0;
+}
+#div1 a {
+    position:absolute; 
+    top:0px; 
+    left:0px; 
+    font-family: Microsoft YaHei; 
+     
+    font-weight:bold; 
+    text-decoration:none; 
+    padding: 3px 6px;
+}
+#div1 a:hover {
+    border: 1px solid #eee; 
+    background: #00f; 
+}
+
+
+p a { 
+    font-size: 14px; 
+    color: #ba0c0c; 
+}
+p a:hover { 
+    color: red; 
+}

@@ -1,0 +1,35 @@
+﻿a.href-to-setting{
+    background-image: url("../Content/Images/Day/pencil.png");
+}
+.href-to-add-modal-dialog{
+    background-image: url("../Content/Images/Day/add.png");
+}
+.href-to-arrow24{
+    background-image: url("../Content/Images/Day/arrow24.png");
+}
+.href-to-add24{
+    background-image: url("../Content/Images/Day/add24.png");
+}
+
+.search-icon{
+    width:30px;
+    height:30px;
+    border:none;
+    border-radius:10px;
+    background: #222222;
+
+    outline:none;
+    position: relative;
+    z-index: 2;
+    float:right;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.search-wrapper .input-holder {
+    background: #101010;
+}
+.a.setting{
+ background-image: url("../Content/Images/Day/pencil.png");
+}
